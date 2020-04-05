@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">​Quiz Game</string>
+    <string name="nema_info">Empty</string>
+    <string name="todo">TODO</string>
+    <string name="input_quiz">Input quiz name</string>
+    <string name="questions">Questions</string>
+    <string name="saved_questions">Saved questions</string>
+    <string name="add_quiz">Add Quiz</string>
+    <string name="answers">Answers</string>
+    <string name="answer">Answer</string>
+    <string name="add">Add answer</string>
+    <string name="add_correct_answer">Add correct answer</string>
+    <string name="save_question">Save question</string>
+    <string name="category_name">Category Name</string>
+    <string name="icon_name">Icon</string>
+    <string name="add_icon">Add icon</string>
+    <string name="save_category">Save category</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
+
