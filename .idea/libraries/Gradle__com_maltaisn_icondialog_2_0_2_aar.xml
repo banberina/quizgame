@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.maltaisn:icondialog:2.0.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7dbcb74382775305e3c064876d02576e/icondialog-2.0.2/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7dbcb74382775305e3c064876d02576e/icondialog-2.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7dbcb74382775305e3c064876d02576e/icondialog-2.0.2/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.maltaisn/icondialog/2.0.2/a8505611100bb4ac6738a1bd8df2e111097cde2b/icondialog-2.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.maltaisn/icondialog/2.0.2/65a7034d3d9002c9fd645e1db6bade4027cbd095/icondialog-2.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
