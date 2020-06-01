@@ -10,9 +10,9 @@
         android:id="@+id/etNaziv"
         android:layout_width="323dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,14 +23,17 @@
         android:id="@+id/etOdgovor"
         android:layout_width="323dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/btnDodajOdgovor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNaziv"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,19 +55,17 @@
         android:layout_width="397dp"
         android:layout_height="92dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/etOdgovor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ListView
             android:id="@+id/lvOdgovori"
             android:layout_width="wrap_content"
-            android:layout_height="65dp"
+            android:layout_height="73dp"
             android:layout_margin="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
@@ -84,7 +85,7 @@
         android:layout_width="233dp"
         android:layout_height="57dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:accessibilityLiveRegion="polite"
         android:backgroundTint="@color/colorPrimary3"
@@ -93,16 +94,13 @@
         android:typeface="serif"
         app:layout_constraintBottom_toTopOf="@+id/btnDodajTacan"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDodajTacan"
         android:layout_width="232dp"
         android:layout_height="62dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:accessibilityLiveRegion="polite"
         android:backgroundTint="@color/colorPrimary3"
         android:text="@string/add_correct_answer"
@@ -110,16 +108,13 @@
         android:typeface="serif"
         app:layout_constraintBottom_toTopOf="@+id/btnDodajPitanje"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnDodajPitanje"
         android:layout_width="310dp"
         android:layout_height="82dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:accessibilityLiveRegion="polite"
         android:backgroundTint="@color/colorPrimary4"
         android:shape="rectangle"
@@ -128,7 +123,6 @@
         android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

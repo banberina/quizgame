@@ -195,7 +195,6 @@ public class RankListFragment extends Fragment {
                     nestaloNeta = false;
                 }
                 else {
-                    //Toast.makeText(getContext(), "Hvala na cekanju, internet ne radi", Toast.LENGTH_LONG).show();
                 }
                 new KlasaDodajURangListuBaza().execute();
                 Collections.sort(sviPodaciLista, new Comparator<Map<Integer, Map<String, String>>>() {

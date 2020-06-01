@@ -18,7 +18,7 @@ import ba.edu.ibu.stu.R;
 public class AddedQuestionAdapter extends BaseAdapter implements View.OnClickListener {
 
     private Activity activity;
-    private ArrayList pitanja;
+    private ArrayList questions;
     private static LayoutInflater inflater = null;
     public Resources res;
     Question question = null;
@@ -35,15 +35,15 @@ public class AddedQuestionAdapter extends BaseAdapter implements View.OnClickLis
 
     public AddedQuestionAdapter(Activity activity, ArrayList data, Resources res) {
         this.activity = activity;
-        this.pitanja = data;
+        this.questions = data;
         this.res = res;
         inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public int getCount() {
-        if (pitanja.size() <= 0)
+        if (questions.size() <= 0)
             return 1;
-        return pitanja.size();
+        return questions.size();
     }
 
     @Override
@@ -69,21 +69,20 @@ public class AddedQuestionAdapter extends BaseAdapter implements View.OnClickLis
         else {
             holder = (AddedQuestionAdapter.ViewHolder) v.getTag();
         }
-        if (pitanja.size() <= 0) {
+        if (questions.size() <= 0) {
             holder.naziv.setText(R.string.nema_info);
             holder.ikona.setImageResource(0);
         }
-        if(pitanja.size() > 0) {
-            question = (Question) pitanja.get(position);
+        if(questions.size() > 0) {
+            question = (Question) questions.get(position);
             holder.naziv.setText(question.getNaziv());
-            if(position == pitanja.size() - 1){
+            if(position == questions.size() - 1){
                 holder.ikona.setImageResource(R.drawable.plus);
             }
             else {
                 holder.ikona.setImageResource(0);
                 holder.ikona.setImageResource(R.drawable.slika);
             }
-            //v.setOnClickListener(new AdapterView.OnItemClickListener(position));
         }
         return v;
     }

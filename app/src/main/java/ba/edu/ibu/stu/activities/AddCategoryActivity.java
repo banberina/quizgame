@@ -46,7 +46,6 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
     private IconDialog iconDialog = new IconDialog();
     private boolean has = false;
 
-    //KLASA YA DODAVANJE U FIREBASE
     public class KlasaKategorija extends AsyncTask<String, Void, Void> {
 
         @Override
@@ -93,7 +92,6 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
                 JSONObject integerValue = fields.getJSONObject("iconID");
                 int idIkoniceKategorije = integerValue.getInt("integerValue");
                 Category categoryAtTheMoment = new Category(naziv, String.valueOf(idIkoniceKategorije));
-                //KvizoviAkt.kategorije.add(trenutnaKategorija);
                 int brojac = 0;
                 for (int i = 0; i < name.length(); i++) {
                     if (name.charAt(i) == '/') {
@@ -166,11 +164,6 @@ public class AddCategoryActivity extends AppCompatActivity implements IconDialog
                             has = true;
                         }
                     }
-                /*for (int i = 0; i < KvizoviAkt.kategorije.size(); i++) {
-                    if (kategorijeParovi.get(i).second.getNaziv().equals(etNaziv.getText().toString())) {
-                        ima = true;
-                    }
-                }*/
                     if (has) {
                         etName.setBackgroundColor(Color.RED);
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddCategoryActivity.this);

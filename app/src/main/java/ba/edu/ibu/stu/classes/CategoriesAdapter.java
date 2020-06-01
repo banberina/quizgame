@@ -75,9 +75,6 @@ public class CategoriesAdapter extends BaseAdapter implements View.OnClickListen
         else {
             category = (Category) kategorije.get(position);
             holder.naziv.setText(category.getName());
-            //holder.ikona.setImageResource(res.getIdentifier("ba.unsa.etf.rma:drawable/" + kategorija.getId(),null, null));
-            //holder.ikona.setImageResource(Integer.parseInt(kategorija.getId()));
-            //v.setOnClickListener(new AdapterView.OnItemClickListener(position));
         }
         return v;
     }

@@ -70,7 +70,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
     private ListView lvKvizovi; //listview za kviyove
     private Spinner spPostojeceKategorije; //kategorije
     public static ArrayList<Quiz> kvizovi = new ArrayList<>(); //lista svih kviyova
-    public static ArrayList<Quiz> filterKvizovi = new ArrayList<>(); //filtrirani kviyovi, kada biras kateg
+    public static ArrayList<Quiz> filterKvizovi = new ArrayList<>();
     public static ArrayList<Quiz> filterKvizovi2 = new ArrayList<>();
     private QuizAdapter adapter;
     private CategoriesAdapter adapterKategorija;
@@ -297,7 +297,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                             JSONObject fields = docc.getJSONObject("fields");
                             JSONObject stringValue = fields.getJSONObject("name");
                             String nazivKviza = stringValue.getString("stringValue");
-                            if (nazivKviza.equals("Dodaj kviz")) continue;
+                            if (nazivKviza.equals("Add Quiz")) continue;
                             JSONObject referenceValue = fields.getJSONObject("categoryID");
                             String idKategorijeKviza = referenceValue.getString("stringValue");
                             Category kat = new Category();
@@ -385,7 +385,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                 }
                 kvizovi.clear();
                 kategorije.clear();
-                kvizovi.add(new Quiz("Dodaj kviz"));
+                kvizovi.add(new Quiz("Add Quiz"));
                 kategorije.add(new Category("Svi"));
                 initialDatabaseQuizzes.clear();
                 initialDatabaseCategories.clear();
@@ -517,7 +517,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                         JSONObject fields = doc.getJSONObject("fields");
                         JSONObject stringValue = fields.getJSONObject("name");
                         String nazivKviza = stringValue.getString("stringValue");
-                        if (nazivKviza.equals("Dodaj kviz")) continue;
+                        if (nazivKviza.equals("Add Quiz")) continue;
                         JSONObject referenceValue = fields.getJSONObject("categoryID");
                         String idKategorijeKviza = referenceValue.getString("stringValue");
                         Category kat = new Category();
@@ -605,19 +605,19 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
         return lista;
     }
 
-    BroadcastReceiver Brisiver = new BroadcastReceiver() {
+    BroadcastReceiver Breciever = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             int status = NetworkUtil.getConnectivityStatusString(context);
             if ("android.net.conn.CONNECTIVITY_CHANGE".equals(intent.getAction())) {
                 if (status == NetworkUtil.NETWORK_STATUS_NOT_CONNECTED) {
-                    Toast.makeText(context, "Niste konektovani na internet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "You're not connected to the Internet", Toast.LENGTH_LONG).show();
                     if (kategorije.size() <= 1) kategorije.addAll(sqlHelper.pokupiSveKategorije());
                     if (kvizovi.size() <= 1)
                         kvizovi.addAll(kvizovi.size() - 1, sqlHelper.pokupiSveKvizove());
                     pitanjaIzSQL.addAll(sqlHelper.pokupiSvaPitanja());
                 } else {
-                    Toast.makeText(context, "Konektovani ste na internet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "You're connected to the Internet", Toast.LENGTH_LONG).show();
                     new KlasaUcitajBazu(new AsyncResponse() {
                         @Override
                         public void processFinish() {
@@ -681,7 +681,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
         try {
             IntentFilter internetIntent = new IntentFilter();
             internetIntent.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-            registerReceiver(Brisiver, internetIntent);
+            registerReceiver(Breciever, internetIntent);
         } catch (Exception e) {
 
         }
@@ -702,9 +702,9 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
             validacijaKvizova.addAll(kvizovi);
             boolean imaDodaj = false;
             for (int i = 0; i < kvizovi.size(); i++) {
-                if (kvizovi.get(i).getNaziv().equals("Dodaj kviz")) imaDodaj = true;
+                if (kvizovi.get(i).getNaziv().equals("Add Quiz")) imaDodaj = true;
             }
-            if (!imaDodaj) kvizovi.add(new Quiz("Dodaj kviz"));
+            if (!imaDodaj) kvizovi.add(new Quiz("Add Quiz"));
             adapter = new QuizAdapter(this, kvizovi, res);
             lvKvizovi.setAdapter(adapter);
             adapterKategorija = new CategoriesAdapter(this, kategorije, res);
@@ -734,7 +734,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                 @Override
                                 public void processFinish() {
                                     filtrirano = true;
-                                    filterKvizovi.add(new Quiz("Dodaj kviz"));
+                                    filterKvizovi.add(new Quiz("Add Quiz"));
                                     Resources res = getResources();
                                     adapter = new QuizAdapter(QuizzesActivity.this, filterKvizovi, res);
                                     lvKvizovi.setAdapter(adapter);
@@ -749,7 +749,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                     filterKvizovi.add(kvizovi.get(i));
                                 }
                             }
-                            filterKvizovi.add(new Quiz("Dodaj kviz"));
+                            filterKvizovi.add(new Quiz("Add Quiz"));
                             Resources res = getResources();
                             adapter = new QuizAdapter(QuizzesActivity.this, filterKvizovi, res);
                             lvKvizovi.setAdapter(adapter);
@@ -785,7 +785,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                 }
                                 if (krajnjeVrijemeMili > sadasnjiDatumMili && pocetnoVrijemeMili <= sadasnjiDatumMili) {
                                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(QuizzesActivity.this);
-                                    alertDialog.setTitle("Imate trenutno aktivan događaj u kalendaru!");
+                                    //alertDialog.setTitle("Imate trenutno aktivan događaj u kalendaru!");
                                     alertDialog.setIcon(R.drawable.error);
                                     alertDialog.setPositiveButton("OK",
                                             new DialogInterface.OnClickListener() {
@@ -820,7 +820,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                     if (yMili < xMili) {
                                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(QuizzesActivity.this);
                                         long ukupnoY = TimeUnit.MILLISECONDS.toMinutes(yMili) + 1;
-                                        alertDialog.setTitle("Imate događaj u kalendaru za " + ukupnoY + " minuta!");
+                                        //alertDialog.setTitle("Imate događaj u kalendaru za " + ukupnoY + " minuta!");
                                         alertDialog.setIcon(R.drawable.error);
                                         alertDialog.setPositiveButton("OK",
                                                 new DialogInterface.OnClickListener() {
@@ -832,7 +832,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                         alertt = true;
                                     }
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "Nemate evenata u kalendaru (nakon danas)", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), "Nemate evenata u kalendaru (nakon danas)", Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -860,7 +860,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                 }
                                 if (krajnjeVrijemeMili > sadasnjiDatumMili && pocetnoVrijemeMili <= sadasnjiDatumMili) {
                                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(QuizzesActivity.this);
-                                    alertDialog.setTitle("Imate trenutno aktivan događaj u kalendaru!");
+                                    //alertDialog.setTitle("Imate trenutno aktivan događaj u kalendaru!");
                                     alertDialog.setIcon(R.drawable.error);
                                     alertDialog.setPositiveButton("OK",
                                             new DialogInterface.OnClickListener() {
@@ -894,7 +894,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
                                 if (yMili < xMili) {
                                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(QuizzesActivity.this);
                                     long ukupnoY = TimeUnit.MILLISECONDS.toMinutes(yMili) + 1;
-                                    alertDialog.setTitle("Imate događaj u kalendaru za " + ukupnoY + " minuta!");
+                                    //alertDialog.setTitle("Imate događaj u kalendaru za " + ukupnoY + " minuta!");
                                     alertDialog.setIcon(R.drawable.error);
                                     alertDialog.setPositiveButton("OK",
                                             new DialogInterface.OnClickListener() {
@@ -954,7 +954,7 @@ public class QuizzesActivity extends AppCompatActivity implements ListFragment.P
         } else {
             //validacijaKvizova = new ArrayList<>();
             if (kvizovi.size() == 0) {
-                kvizovi.add(new Quiz("Dodaj kviz"));
+                kvizovi.add(new Quiz("Add Quiz"));
             }
             FragmentManager fm = getSupportFragmentManager();
             FrameLayout lista = (FrameLayout) findViewById(R.id.listPlace);

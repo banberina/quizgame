@@ -30,7 +30,7 @@ public class PossibleQuestionsAdapter extends BaseAdapter implements View.OnClic
 
     public static class ViewHolder{
         public TextView naziv;
-        public IconView ikona;
+        public IconView icon;
     }
 
     public PossibleQuestionsAdapter(Activity activity, ArrayList data, Resources res) {
@@ -63,7 +63,7 @@ public class PossibleQuestionsAdapter extends BaseAdapter implements View.OnClic
             v = inflater.inflate(R.layout.element_lists, null);
             holder = new PossibleQuestionsAdapter.ViewHolder();
             holder.naziv = (TextView) v.findViewById(R.id.Itemname);
-            holder.ikona = (IconView) v.findViewById(R.id.icon);
+            holder.icon = (IconView) v.findViewById(R.id.icon);
             v.setTag(holder);
         }
         else {
@@ -71,13 +71,12 @@ public class PossibleQuestionsAdapter extends BaseAdapter implements View.OnClic
         }
         if (questions.size() <= 0) {
             holder.naziv.setText(R.string.nema_info);
-            holder.ikona.setImageResource(0);
+            holder.icon.setImageResource(0);
         }
         if(questions.size() > 0) {
             question = (Question) questions.get(position);
             holder.naziv.setText(question.getNaziv());
-            holder.ikona.setImageResource(R.drawable.plus);
-            //v.setOnClickListener(new AdapterView.OnItemClickListener(position));
+            holder.icon.setImageResource(R.drawable.plus);
         }
         return v;
     }

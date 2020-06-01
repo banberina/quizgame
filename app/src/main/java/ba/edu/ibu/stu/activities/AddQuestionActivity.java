@@ -50,6 +50,7 @@ public class AddQuestionActivity extends AppCompatActivity {
     private EditText etAnswer;
     private ListView lvAnswers;
     private Button btnAddCorrect;
+    private Button btnAddAnswer;
     private Button btnAddQuestion;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> answers = new ArrayList<>();
@@ -114,10 +115,8 @@ public class AddQuestionActivity extends AppCompatActivity {
                 JSONObject fields = jo.getJSONObject("fields");
                 JSONObject stringValue = fields.getJSONObject("name");
                 String naziv = stringValue.getString("stringValue");
-                //System.out.println("NAZIVVVV:   " + naziv);
                 JSONObject integerValue = fields.getJSONObject("correctIndex");
                 int indexTacnog = integerValue.getInt("integerValue");
-                //System.out.println("TACAN ODGOVORRR BROJ:   " + indexTacnog);
                 JSONObject odgg = fields.getJSONObject("answers");
                 JSONObject arrayValue = odgg.getJSONObject("arrayValue");
                 JSONArray values = arrayValue.getJSONArray("values");
@@ -170,10 +169,10 @@ public class AddQuestionActivity extends AppCompatActivity {
         etName = (EditText) findViewById(R.id.etNaziv);
         etAnswer = (EditText) findViewById(R.id.etOdgovor);
         lvAnswers = (ListView) findViewById(R.id.lvOdgovori);
-        btnAddCorrect = (Button) findViewById(R.id.btnDodajOdgovor);
+        btnAddAnswer = (Button) findViewById(R.id.btnDodajOdgovor);
         btnAddCorrect = (Button) findViewById(R.id.btnDodajTacan);
         btnAddQuestion = (Button) findViewById(R.id.btnDodajPitanje);
-        etName.setHint("Input quiz name");
+        etName.setHint("Input question name");
         etAnswer.setHint("Answer");
         Resources res = getResources();
         adapter = new ArrayAdapter<String>(this, R.layout.element_lists, R.id.Itemname, answers) {
@@ -207,7 +206,7 @@ public class AddQuestionActivity extends AppCompatActivity {
             }
         });
 
-        btnAddCorrect.setOnClickListener(new View.OnClickListener() {
+        btnAddAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (String odg : answers) {
@@ -260,7 +259,7 @@ public class AddQuestionActivity extends AppCompatActivity {
                 boolean alert = false;
                 if(!isNetworkAvailable()){
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddQuestionActivity.this);
-                    alertDialog.setTitle("Trenutno nema interneta, pokusajte kasnije!");
+                    alertDialog.setTitle("No internet connection at the moment, try later!");
                     alertDialog.setIcon(R.drawable.error);
                     alertDialog.setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
@@ -296,10 +295,8 @@ public class AddQuestionActivity extends AppCompatActivity {
                         questionAtTheMoment.setNaziv(etName.getText().toString());
                         questionAtTheMoment.setTekstPitanja(etName.getText().toString());
                         questionAtTheMoment.setOdgovori(answers);
-                        //Pitanje pitanje = new Pitanje(etNaziv.getText().toString(), etNaziv.getText().toString(), odgovori, tacanOdgovor);
                         QuizzesActivity.sqlHelper.dodajPitanjeUSQL(questionAtTheMoment);
                         Intent returnIntent = getIntent();
-                        //TODO SKONTAT STA JE.. mislim da je vracanje vrijednosti u drugu akt
                         returnIntent.putExtra("nazivPitanja", questionAtTheMoment.getNaziv());
                         returnIntent.putExtra("tekstPitanja", questionAtTheMoment.getTekstPitanja());
                         returnIntent.putExtra("odgovori", questionAtTheMoment.getOdgovori());

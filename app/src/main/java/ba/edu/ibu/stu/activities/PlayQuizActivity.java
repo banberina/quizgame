@@ -45,31 +45,6 @@ public class PlayQuizActivity extends AppCompatActivity implements QuestionFragm
                 listPitanjaKviza.remove(listPitanjaKviza.size() - 1);
         }
 
-        if(listPitanjaKviza.size() != 0) {
-            //broj minuta do eventa, ako je manji nemas pravo igrat kviz
-            double x = (double) listPitanjaKviza.size() / 2;
-            int pom = (int) Math.round(x);
-            int sati = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-            int minute = Calendar.getInstance().get(Calendar.MINUTE) + pom;
-            if (sati > 23) {
-                sati = 0;
-            }
-            while (minute >= 60) {
-                minute -= 60;
-                sati++;
-                if (sati > 23) {
-                    sati = 0;
-                }
-            }
-            Intent i = new Intent(AlarmClock.ACTION_SET_ALARM);
-            i.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
-            i.putExtra(AlarmClock.EXTRA_HOUR, sati);
-            i.putExtra(AlarmClock.EXTRA_MINUTES, minute);
-            startActivity(i);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "Broj pitanja je nula, alarm se ne aktivira", Toast.LENGTH_LONG).show();
-        }
 
         brojOstalihPitanja = listPitanjaKviza.size() - 1;
         quiz.setPitanja(listPitanjaKviza);

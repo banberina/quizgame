@@ -80,11 +80,8 @@ public class QuizAdapter extends BaseAdapter implements View.OnClickListener {
                 holder.ikona.setImageResource(0);
                 if (quiz.getCategory().getId().length() == 0) {
                     holder.ikona.setImageResource(R.drawable.slika);
-                    //holder.ikona.setIcon(Integer.parseInt("26"));
                 } else holder.ikona.setIcon(Integer.parseInt(quiz.getCategory().getId()));
             }
-            //holder.ikona.setImageResource(Integer.parseInt(kviz.getKategorija().getId()));
-            //v.setOnClickListener(new AdapterView.OnItemClickListener(position));
         }
         return v;
     }
